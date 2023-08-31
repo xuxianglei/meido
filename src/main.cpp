@@ -34,3 +34,9 @@ public:
 void MiraiCP::enrollPlugin() {
   MiraiCP::enrollPlugin<PluginMain>();
 }
+
+
+int main(void) {
+    Logger::logger.info("nnn");
+    return 0;
+}

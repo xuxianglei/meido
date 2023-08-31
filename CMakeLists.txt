@@ -34,6 +34,15 @@ add_library(
         ${PLUGIN_SOURCE_PATH}
 )
 
+add_executable(mirai-test
+        single_include/MiraiCP/MiraiCP.cpp # MiraiCP 源文件
+        ${PLUGIN_SOURCE_PATH}
+        src/timer.cpp
+        src/timer.h
+)
+target_include_directories(mirai-test PUBLIC ${MIRAICP_SOURCE_HEADER_PATH})
+target_compile_definitions(mirai-test PUBLIC JSON_MultipleHeaders=ON MIRAICP_LIB_SDK)
+
 # json库启用C++17标准
 target_compile_definitions(${MIRAICP_TARGET_NAME} PUBLIC JSON_HAS_CPP_17)
 
@@ -93,5 +102,5 @@ endif (WIN32)
 
 if (UNIX)
     set(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
-    target_link_options(${MIRAICP_TARGET_NAME} PUBLIC -static-libstdc++ -static-libgcc)
+    target_link_options(${MIRAICP_TARGET_NAME} PUBLIC -static-++)
 endif (UNIX)
